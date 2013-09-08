@@ -3,9 +3,9 @@
 
 	<property name="root.dir" value="../.." />
 	<property name="config.FileName" value="hibernate.cfg.xml" />
-	
+
 	<include buildfile="${root.dir}/build-common/common-project.xml" />
-	
+
 	<target name="init" depends="common.init">
 		<property name="assembly.description" value="The Unit Tests for NHibernate." />
 		<property name="assembly.is-cls-compliant" value="false" />
@@ -21,6 +21,7 @@
 			<include name="System.Xml.Linq.dll" />
 			<include name="System.Drawing.dll" />
 			<include name="System.Data.dll" />
+			<include name="System.Data.DataSetExtensions.dll" />
 			<include name="System.Data.OracleClient.dll" />
 			<include name="Iesi.Collections.dll" />
 			<include name="log4net.dll" />
@@ -36,9 +37,9 @@
 			<exclude name="bin/**/*.xml" />
 		</resourcefileset>
 	</target>
-	
+
 	<target name="generate-assemblyinfo" depends="init common.generate-assemblyinfo" />
-	
+
 	<target name="build" depends="init generate-assemblyinfo common.compile-tests">
 		<if test="${file::exists(config.FileName)}">
 			<copy file="hibernate.cfg.xml" tofile="${bin.dir}/hibernate.cfg.xml" />
